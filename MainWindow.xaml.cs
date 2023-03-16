@@ -24,5 +24,65 @@ namespace Many_Body_Simulation
         {
             InitializeComponent();
         }
+
+        private void LoadButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void AddBodyButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void SimulationSpeed_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void Name_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void Position_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+        private void Speed_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+        private void Mass_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+        private void Radius_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+        private void Red_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+        private void Green_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+        private void Blue_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void Viewport_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
