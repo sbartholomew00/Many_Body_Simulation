@@ -11,53 +11,133 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="150"/>
         </Grid.ColumnDefinitions>
-        
-        <Viewport3D Name="myViewport" MouseDown="Viewport_MouseDown">
-            
-        </Viewport3D>
-        
+
+        <Border
+            MouseLeftButtonDown="BackgroundMouseDown"
+            MouseLeftButtonUp="BackgroundMouseUp"
+            MouseMove="ViewportMouseMove"
+            Background="White">
+            <local:Viewport3dDerived
+                x:Name="viewport3d"
+                MouseDown="Viewport_MouseDown">
+
+            </local:Viewport3dDerived>
+        </Border>
+
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90"/>
+                <RowDefinition Height="90"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <!-- Buttons -->
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/> <!-- Load, Save -->
-                    <RowDefinition Height="*"/> <!-- Pause -->
-                    <RowDefinition Height="*"/> <!-- Add Body -->
+                    <RowDefinition Height="*"/>
+                    <!-- Load, Save -->
+                    <RowDefinition Height="*"/>
+                    <!-- Pause -->
+                    <RowDefinition Height="*"/>
+                    <!-- Add Body -->
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                
-                <Button Name="loadButton" Click="LoadButton_Click">
+
+                <Button Name="loadButton"
+                        Click="LoadButton_Click">
                     <Label Content="Load"/>
                 </Button>
-                <Button Name="saveButton" Grid.Column="1" Click="SaveButton_Click">
+                <Button Name="saveButton"
+                        Grid.Column="1"
+                        Click="SaveButton_Click">
                     <Label Content="Save"/>
                 </Button>
 
-                <Button Name="pauseButton" Grid.Row="1" Click="PauseButton_Click">
-                    <Label Content="Unpause"/>
+                <Button Name="pauseButton"
+                        Grid.Row="1"
+                        Click="PauseButton_Click">
+                    Unpause
                 </Button>
 
-                <Button Name="addBodyButton" Grid.Row="2" Click="AddBodyButton_Click">
+                <Button Name="addBodyButton"
+                        Grid.Row="2"
+                        Click="AddBodyButton_Click">
                     <Label Content="Add Body"/>
                 </Button>
             </Grid>
-            
-            <!-- Entry fields -->
+
+            <!-- Movement buttons -->
             <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <!-- Load, Save -->
+                    <RowDefinition Height="*"/>
+                    <!-- Pause -->
+                    <RowDefinition Height="*"/>
+                    <!-- Add Body -->
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Name="upButton"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        PreviewMouseLeftButtonDown="UpButton_Click"
+                        PreviewMouseLeftButtonUp="MovementButtonRelease">
+                    <Label Content="Up"/>
+                </Button>
+                <Button Name="leftButton"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        PreviewMouseLeftButtonDown="LeftButton_Click"
+                        PreviewMouseLeftButtonUp="MovementButtonRelease">
+                    <Label Content="Left"/>
+                </Button>
+                <Button Name="rightButton"
+                        Grid.Row="1" Grid.Column="2"
+                        PreviewMouseLeftButtonDown="RightButton_Click"
+                        PreviewMouseLeftButtonUp="MovementButtonRelease">
+                    <Label Content="Right"/>
+                </Button>
+                <Button Name="downButton"
+                        Grid.Row="2" Grid.Column="1"
+                        PreviewMouseLeftButtonDown="DownButton_Click"
+                        PreviewMouseLeftButtonUp="MovementButtonRelease">
+                    <Label Content="Down"/>
+                </Button>
+
+                <Button Name="zoomInButton"
+                        Grid.Row="0" Grid.Column="0"
+                        PreviewMouseLeftButtonDown="ZoomInButton_Click"
+                        PreviewMouseLeftButtonUp="MovementButtonRelease">
+                    <Label Content="Zoom In"/>
+                </Button>
+                <Button Name="zoomOutButton"
+                        Grid.Row="2" Grid.Column="0"
+                        PreviewMouseLeftButtonDown="ZoomOutButton_Click"
+                        PreviewMouseLeftButtonUp="MovementButtonRelease">
+                    <Label Content="Zoom Out"/>
+                </Button>
+            </Grid>
+
+            <!-- Entry fields -->
+            <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
                     <!-- Simulation Speed -->
                     <RowDefinition Height="30"/>
                     <!-- Name -->
                     <RowDefinition Height="30"/>
-                    <!-- Position -->
+                    <!-- Position X -->
+                    <RowDefinition Height="30"/>
+                    <!-- Position Y -->
+                    <RowDefinition Height="30"/>
+                    <!-- Position Z -->
                     <RowDefinition Height="30"/>
                     <!-- Speed -->
                     <RowDefinition Height="30"/>
@@ -83,41 +163,127 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Content="Simulation Speed:" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"
-                     Text="1" KeyDown="SimulationSpeed_KeyDown"/>
+                <Label Grid.Row="0"
+                       Content="Simulation Speed:"
+                       VerticalAlignment="Center"/>
+                <TextBox Grid.Row="0"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         Text="1" KeyDown="SimulationSpeed_KeyDown"/>
 
-                <Label Grid.Row="1" Content="Name:" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"
-                     Text="1" KeyDown="Name_KeyDown"/>
+                <Label Grid.Row="1"
+                       Content="Name:"
+                       VerticalAlignment="Center"/>
+                <TextBox Grid.Row="1"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         Text="1" KeyDown="Name_KeyDown"/>
 
-                <Label Grid.Row="2" Content="Position:" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"
-                     Text="1" KeyDown="Position_KeyDown"/>
+                <Label Grid.Row="2"
+                       Content="Position (x):"
+                       VerticalAlignment="Center"/>
+                <TextBox Grid.Row="2"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         Text="1"
+                         KeyDown="XPosition_KeyDown"
+                         x:Name="xPositionTextBox"/>
 
-                <Label Grid.Row="3" Content="Speed:" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"
-                     Text="1" KeyDown="Speed_KeyDown"/>
+                <Label Grid.Row="3"
+                       Content="Position (y):"
+                       VerticalAlignment="Center"/>
+                <TextBox Grid.Row="3"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         Text="1"
+                         KeyDown="YPosition_KeyDown"
+                         x:Name="yPositionTextBox"/>
 
-                <Label Grid.Row="4" Content="Mass:" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"
-                     Text="1" KeyDown="Mass_KeyDown"/>
+                <Label Grid.Row="4"
+                       Content="Position (z):"
+                       VerticalAlignment="Center"/>
+                <TextBox Grid.Row="4"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         Text="1"
+                         KeyDown="ZPosition_KeyDown"
+                         x:Name="zPositionTextBox"/>
+                
+                <Label Grid.Row="5"
+                       Content="Velocity (x):"
+                       VerticalAlignment="Center"/>
+                <TextBox Grid.Row="5"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         Text="1"
+                         KeyDown="XVelocity_KeyDown"
+                         x:Name="xVelocityTextBox"/>
 
-                <Label Grid.Row="5" Content="Radius:" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"
-                     Text="1" KeyDown="Radius_KeyDown"/>
+                <Label Grid.Row="6"
+                       Content="Velocity (y):"
+                       VerticalAlignment="Center"/>
+                <TextBox Grid.Row="6"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         Text="1"
+                         KeyDown="YVelocity_KeyDown"
+                         x:Name="yVelocityTextBox"/>
 
-                <Label Grid.Row="6" Content="Red:" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"
-                     Text="1" KeyDown="Red_KeyDown"/>
+                <Label Grid.Row="7"
+                       Content="Velocity (z):"
+                       VerticalAlignment="Center"/>
+                <TextBox Grid.Row="7"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         Text="1"
+                         KeyDown="ZVelocity_KeyDown"
+                         x:Name="zVelocityTextBox"/>
 
-                <Label Grid.Row="7" Content="Green:" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="7" Grid.Column="1" VerticalAlignment="Center"
-                     Text="1" KeyDown="Green_KeyDown"/>
+                <Label Grid.Row="8"
+                       Content="Mass:"
+                       VerticalAlignment="Center"/>
+                <TextBox Grid.Row="8"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         Text="1"
+                         KeyDown="Mass_KeyDown"
+                         x:Name="massTextBox"/>
 
-                <Label Grid.Row="8" Content="Blue:" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="8" Grid.Column="1" VerticalAlignment="Center"
-                     Text="1" KeyDown="Blue_KeyDown"/>
+                <Label Grid.Row="9"
+                       Content="Radius:"
+                       VerticalAlignment="Center"/>
+                <TextBox Grid.Row="9"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         Text="1"
+                         KeyDown="Radius_KeyDown"/>
+
+                <Label Grid.Row="10"
+                       Content="Red:"
+                       VerticalAlignment="Center"/>
+                <TextBox Grid.Row="10"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         Text="1"
+                         KeyDown="Red_KeyDown"/>
+
+                <Label Grid.Row="11"
+                       Content="Green:"
+                       VerticalAlignment="Center"/>
+                <TextBox Grid.Row="11"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         Text="1"
+                         KeyDown="Green_KeyDown"/>
+
+                <Label Grid.Row="12"
+                       Content="Blue:"
+                       VerticalAlignment="Center"/>
+                <TextBox Grid.Row="12"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         Text="1"
+                         KeyDown="Blue_KeyDown"/>
             </Grid>
         </Grid>
     </Grid>
