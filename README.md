@@ -1,6 +1,6 @@
 # Many_Body_Simulation
 
-An app that does a gravitational simulation. The UI is implemented using WPF.
+An app that does a gravitational simulation using an Euler method. Energy is not conserved during close passes. The UI is implemented using WPF.
 
 Controls:
 - Add a gravitational body with the Add Body button.
