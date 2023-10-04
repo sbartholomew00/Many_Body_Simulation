@@ -309,8 +309,6 @@ namespace Many_Body_Simulation
         /// <summary>
         /// Won't be called when the background is clicked on (unless very close to something).
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Viewport_MouseDown(object sender, MouseButtonEventArgs e)
         {
             HitTestResult result = VisualTreeHelper.HitTest(viewport3d, e.GetPosition(viewport3d));

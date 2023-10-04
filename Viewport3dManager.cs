@@ -17,7 +17,7 @@ namespace Many_Body_Simulation
         public Viewport3dManager(System.Windows.Controls.Viewport3D viewport)
         {
             this.viewport = viewport;
-            PerspectiveCamera camera = new(new Point3D(0.0, 0.0, 1.0), new Vector3D(0.0, 0.0, -1.0), new Vector3D(0.0, 1.0, 0.0), 90.0);
+            PerspectiveCamera camera = new(new Point3D(0.0, 0.0, 10.0), new Vector3D(0.0, 0.0, -1.0), new Vector3D(0.0, 1.0, 0.0), 90.0);
             viewport.Camera = camera;
             direction = Direction.None;
 
@@ -34,39 +34,6 @@ namespace Many_Body_Simulation
         // Updates camera only
         public void Update()
         {
-            /*viewport.Children.Clear();
-            foreach (VisualBody body in bodies)
-            {
-                MeshGeometry3D mesh = new();
-                mesh.Positions.Add(new Point3D(0.0, 0.0, 0.0));
-                mesh.Positions.Add(new Point3D(0.1, -0.1, 0.0));
-                mesh.Positions.Add(new Point3D(-0.1, -0.1, 0.0));
-                mesh.Positions.Add(new Point3D(0.0, -0.1, 0.1));
-
-                mesh.TriangleIndices.Add(0);
-                mesh.TriangleIndices.Add(1);
-                mesh.TriangleIndices.Add(2);
-
-                mesh.TriangleIndices.Add(0);
-                mesh.TriangleIndices.Add(3);
-                mesh.TriangleIndices.Add(1);
-
-                mesh.TriangleIndices.Add(0);
-                mesh.TriangleIndices.Add(2);
-                mesh.TriangleIndices.Add(3);
-
-                mesh.TriangleIndices.Add(1);
-                mesh.TriangleIndices.Add(3);
-                mesh.TriangleIndices.Add(2);
-
-                //System.Windows.Media.SolidColorBrush brush = new();
-                DiffuseMaterial material = new(System.Windows.Media.Brushes.Red);
-                ModelVisual3D model = new();
-                model.Content = new GeometryModel3D(mesh, material);
-                model.Transform = new TranslateTransform3D(body.Position.Item1, body.Position.Item2, body.Position.Item3);
-                viewport.Children.Add(model);
-            }*/
-
             double moveSpeed = 0.05;
 
             // Camera

@@ -14,11 +14,5 @@ namespace Many_Body_Simulation
         public Tuple<double, double, double> Position { get; set; }
         public Tuple<double, double, double> Velocity { get; set; }
         public double Mass { get; set; }
-        /*public Body(Tuple<double, double, double> position, Tuple<double, double, double> velocity, double mass)
-        {
-            this.Position = position;
-            this.Velocity = velocity;
-            Mass = mass;
-        }*/
     }
 }

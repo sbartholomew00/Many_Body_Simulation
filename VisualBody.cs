@@ -91,28 +91,6 @@ namespace Many_Body_Simulation
 
             }
 
-            /* test shape
-            mesh.Positions.Add(new Point3D(0.0, 0.0, 0.0));
-            mesh.Positions.Add(new Point3D(0.1, -0.1, 0.0));
-            mesh.Positions.Add(new Point3D(-0.1, -0.1, 0.0));
-            mesh.Positions.Add(new Point3D(0.0, -0.1, 0.1));
-
-            mesh.TriangleIndices.Add(0);
-            mesh.TriangleIndices.Add(1);
-            mesh.TriangleIndices.Add(2);
-
-            mesh.TriangleIndices.Add(0);
-            mesh.TriangleIndices.Add(3);
-            mesh.TriangleIndices.Add(1);
-
-            mesh.TriangleIndices.Add(0);
-            mesh.TriangleIndices.Add(2);
-            mesh.TriangleIndices.Add(3);
-
-            mesh.TriangleIndices.Add(1);
-            mesh.TriangleIndices.Add(3);
-            mesh.TriangleIndices.Add(2);*/
-
             DiffuseMaterial material = new(System.Windows.Media.Brushes.Brown);
             Content = new GeometryModel3D(mesh, material);
         }
